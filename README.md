@@ -29,9 +29,7 @@ O pipeline executa automaticamente:
 Instalação de dependências
 Execução dos testes com pytest
 Validação do código antes do deploy
-
 Exemplo:
-
 - name: Install dependencies
   run: pip install -r requirements.txt
 
@@ -42,7 +40,6 @@ Exemplo:
 Os testes garantem que a API está funcionando corretamente antes do deploy.
 
 Exemplo de teste:
-
 from main import app
 
 def test_home():
@@ -102,11 +99,11 @@ GET /
 ✔ Projeto pronto para portfólio profissional
 
 🔮 Próximos passos (nível avançado)
- Adicionar coverage (pytest-cov)
- Adicionar lint (flake8 / ruff)
- Criar Dockerfile
- Migrar deploy para AWS
- Adicionar monitoramento/logs
+Adicionar coverage (pytest-cov)
+Adicionar lint (flake8 / ruff)
+Criar Dockerfile
+Migrar deploy para AWS
+Adicionar monitoramento e logs
 👨‍💻 Autor
 
 João Carvalho
