@@ -1,17 +1,14 @@
 🚀 API Flask com CI/CD Completo (GitHub Actions + Pytest + Render)
 
-Este projeto é uma API desenvolvida em Flask (Python) com pipeline completo de CI/CD, incluindo:
+Este projeto é uma API desenvolvida em Flask (Python) com pipeline completo de CI/CD, incluindo integração contínua, testes automatizados e deploy contínuo.
 
-Integração contínua com GitHub Actions
-Testes automatizados com pytest
-Deploy contínuo na Render
 🧠 Objetivo do projeto
 
-Demonstrar um fluxo real de DevOps moderno, onde cada alteração no código passa por validação automática antes de ir para produção.
+Demonstrar um fluxo real de DevOps moderno, onde cada alteração no código passa por validação automática antes de ser enviada para produção.
 
 ⚙️ Arquitetura do CI/CD
 Developer
-   ↓ (git push)
+   ↓ git push
 GitHub Repository
    ↓
 GitHub Actions (CI)
@@ -21,15 +18,15 @@ GitHub Actions (CI)
    ↓ (se aprovado)
 Render (CD - deploy automático)
    ↓
-API atualizada em produção 🚀
-🧪 Pipeline de CI (GitHub Actions)
+API em produção 🚀
+🧪 CI - GitHub Actions
 
-O pipeline executa automaticamente:
+O pipeline de integração contínua executa automaticamente:
 
-Instalação de dependências
-Execução dos testes com pytest
-Validação do código antes do deploy
-Exemplo:
+Instala dependências
+Roda testes com pytest
+Valida o código
+Exemplo do workflow:
 - name: Install dependencies
   run: pip install -r requirements.txt
 
@@ -37,9 +34,9 @@ Exemplo:
   run: pytest
 🧪 Testes (pytest)
 
-Os testes garantem que a API está funcionando corretamente antes do deploy.
+Os testes garantem que a API funciona antes do deploy.
 
-Exemplo de teste:
+Exemplo:
 from main import app
 
 def test_home():
@@ -51,9 +48,9 @@ def test_home():
 🔁 Fluxo completo
 git push
    ↓
-GitHub Actions (pytest roda automaticamente)
+GitHub Actions executa pytest
    ↓
-Se testes PASSAREM ✅
+Se PASSAR ✅
    ↓
 Render faz deploy automático
    ↓
@@ -67,8 +64,7 @@ api-flask/
 ├── .github/
 │   └── workflows/
 │       └── pipeline.yml
-├── README.md
-└── .gitignore
+└── README.md
 🚀 Tecnologias utilizadas
 Python 3
 Flask
@@ -79,7 +75,7 @@ Render (CD)
 Gunicorn
 🌐 Deploy
 
-A API está hospedada na Render:
+API em produção:
 
 👉 https://sua-api.onrender.com
 
@@ -91,19 +87,18 @@ GET /
 }
 📈 O que este projeto demonstra
 
-✔ CI/CD real funcionando ponta a ponta
+✔ CI/CD funcionando de ponta a ponta
 ✔ Testes automatizados com pytest
 ✔ Integração GitHub Actions
 ✔ Deploy contínuo na Render
-✔ Boas práticas de DevOps
-✔ Projeto pronto para portfólio profissional
+✔ Projeto pronto para portfólio DevOps
 
-🔮 Próximos passos (nível avançado)
-Adicionar coverage (pytest-cov)
-Adicionar lint (flake8 / ruff)
-Criar Dockerfile
-Migrar deploy para AWS
-Adicionar monitoramento e logs
+🔮 Próximos passos
+Coverage com pytest-cov
+Lint com ruff ou flake8
+Dockerização da API
+Deploy em AWS
+Monitoramento e logs
 👨‍💻 Autor
 
 João Carvalho
