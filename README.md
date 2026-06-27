@@ -77,14 +77,8 @@ Gunicorn
 
 API em produção:
 
-👉 https://sua-api.onrender.com
+👉 https://api-flask-fnq8.onrender.com
 
-📌 Exemplo de endpoint
-GET /
-{
-  "status": "success",
-  "message": "API rodando com CI/CD completo e testes automatizados"
-}
 📈 O que este projeto demonstra
 
 ✔ CI/CD funcionando de ponta a ponta
