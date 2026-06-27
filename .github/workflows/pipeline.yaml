@@ -24,3 +24,6 @@ jobs:
               run: |
                  pytest -v 
 
+            - name: deploy no render
+                run: |
+                    curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
