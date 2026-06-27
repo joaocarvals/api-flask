@@ -1,51 +1,113 @@
-Simple Flask API
+🚀 API Flask com CI/CD Completo (GitHub Actions + Pytest + Render)
 
-Uma API REST simples desenvolvida com Python e Flask com o objetivo de praticar os fundamentos do desenvolvimento de APIs.
+Este projeto é uma API desenvolvida em Flask (Python) com pipeline completo de CI/CD, incluindo:
 
-📖 Sobre o projeto
+Integração contínua com GitHub Actions
+Testes automatizados com pytest
+Deploy contínuo na Render
+🧠 Objetivo do projeto
 
-Este projeto foi criado para estudar a criação de APIs utilizando o framework Flask. Atualmente, a aplicação possui uma estrutura simples, servindo como base para testes e aprendizado.
+Demonstrar um fluxo real de DevOps moderno, onde cada alteração no código passa por validação automática antes de ir para produção.
 
-🚀 Tecnologias utilizadas
-Python 3
-Flask
+⚙️ Arquitetura do CI/CD
+Developer
+   ↓ (git push)
+GitHub Repository
+   ↓
+GitHub Actions (CI)
+   ├── instala dependências
+   ├── executa pytest
+   ├── valida código
+   ↓ (se aprovado)
+Render (CD - deploy automático)
+   ↓
+API atualizada em produção 🚀
+🧪 Pipeline de CI (GitHub Actions)
+
+O pipeline executa automaticamente:
+
+Instalação de dependências
+Execução dos testes com pytest
+Validação do código antes do deploy
+
+Exemplo:
+
+- name: Install dependencies
+  run: pip install -r requirements.txt
+
+- name: Run tests
+  run: pytest
+🧪 Testes (pytest)
+
+Os testes garantem que a API está funcionando corretamente antes do deploy.
+
+Exemplo de teste:
+
+from main import app
+
+def test_home():
+    client = app.test_client()
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert response.json["message"] == "API ok"
+🔁 Fluxo completo
+git push
+   ↓
+GitHub Actions (pytest roda automaticamente)
+   ↓
+Se testes PASSAREM ✅
+   ↓
+Render faz deploy automático
+   ↓
+API atualizada em produção 🚀
 📁 Estrutura do projeto
 api-flask/
 │
 ├── main.py
+├── test_main.py
 ├── requirements.txt
+├── .github/
+│   └── workflows/
+│       └── pipeline.yml
 ├── README.md
 └── .gitignore
-▶️ Como executar
-1. Clone o repositório
-git clone https://github.com/joaocarvals/api-flask.git
-2. Acesse a pasta do projeto
-cd api-flask
-3. (Opcional) Crie um ambiente virtual
+🚀 Tecnologias utilizadas
+Python 3
+Flask
+Pytest
+Git & GitHub
+GitHub Actions (CI)
+Render (CD)
+Gunicorn
+🌐 Deploy
 
-Windows
+A API está hospedada na Render:
 
-python -m venv venv
-venv\Scripts\activate
+👉 https://sua-api.onrender.com
 
-Linux/macOS
+📌 Exemplo de endpoint
+GET /
+{
+  "status": "success",
+  "message": "API rodando com CI/CD completo e testes automatizados"
+}
+📈 O que este projeto demonstra
 
-python3 -m venv venv
-source venv/bin/activate
-4. Instale as dependências
-pip install -r requirements.txt
-5. Execute a aplicação
-python main.py
+✔ CI/CD real funcionando ponta a ponta
+✔ Testes automatizados com pytest
+✔ Integração GitHub Actions
+✔ Deploy contínuo na Render
+✔ Boas práticas de DevOps
+✔ Projeto pronto para portfólio profissional
 
-A aplicação ficará disponível em:
-
-http://127.0.0.1:5000
-📌 Funcionalidades
-API desenvolvida com Flask
-Respostas em formato JSON
-Estrutura simples para estudos
+🔮 Próximos passos (nível avançado)
+ Adicionar coverage (pytest-cov)
+ Adicionar lint (flake8 / ruff)
+ Criar Dockerfile
+ Migrar deploy para AWS
+ Adicionar monitoramento/logs
 👨‍💻 Autor
 
 João Carvalho
-
-GitHub: https://github.com/joaocarvals
+Foco em DevOps, automação, CI/CD e backend com Python
