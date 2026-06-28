@@ -1,4 +1,4 @@
-🚀 API Flask com CI/CD Completo (GitHub Actions + Pytest + Render)
+**🚀 API Flask com CI/CD Completo (GitHub Actions + Pytest + Render)
 
 Este projeto é uma API desenvolvida em Flask (Python) com pipeline completo de CI/CD, incluindo integração contínua, testes automatizados e deploy contínuo.
 
@@ -96,4 +96,4 @@ Monitoramento e logs
 👨‍💻 Autor
 
 João Carvalho
-Foco em DevOps, automação, CI/CD e backend com Python
+Foco em DevOps, automação, CI/CD e backend com Python**
