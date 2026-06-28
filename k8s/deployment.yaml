@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: flask-api
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: flask-api
+
+  template:
+    metadata:
+      labels:
+        app: flask-api
+
+    spec:
+      containers:
+        - name: flask-api
+          image: joaocarvals/minha-api:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 5000
