@@ -1,99 +1,170 @@
-**🚀 API Flask com CI/CD Completo (GitHub Actions + Pytest + Render)
+🚀 Flask DevOps Project
 
-Este projeto é uma API desenvolvida em Flask (Python) com pipeline completo de CI/CD, incluindo integração contínua, testes automatizados e deploy contínuo.
+📖 Sobre o projeto
 
-🧠 Objetivo do projeto
+Este projeto foi desenvolvido para praticar e demonstrar conceitos de DevOps utilizando uma aplicação Flask simples.
 
-Demonstrar um fluxo real de DevOps moderno, onde cada alteração no código passa por validação automática antes de ser enviada para produção.
+O objetivo é construir um fluxo moderno de desenvolvimento, passando pela criação da aplicação, containerização, infraestrutura como código, orquestração e automação de deploy.
 
-⚙️ Arquitetura do CI/CD
-Developer
-   ↓ git push
-GitHub Repository
-   ↓
-GitHub Actions (CI)
-   ├── instala dependências
-   ├── executa pytest
-   ├── valida código
-   ↓ (se aprovado)
-Render (CD - deploy automático)
-   ↓
-API em produção 🚀
-🧪 CI - GitHub Actions
+🛠️ Tecnologias
+Python
+Flask
+Docker
+Kubernetes
+Terraform
+GitHub Actions
+Git
+Render
 
-O pipeline de integração contínua executa automaticamente:
-
-Instala dependências
-Roda testes com pytest
-Valida o código
-Exemplo do workflow:
-- name: Install dependencies
-  run: pip install -r requirements.txt
-
-- name: Run tests
-  run: pytest
-🧪 Testes (pytest)
-
-Os testes garantem que a API funciona antes do deploy.
-
-Exemplo:
-from main import app
-
-def test_home():
-    client = app.test_client()
-    response = client.get("/")
-
-    assert response.status_code == 200
-    assert response.json["message"] == "API ok"
-🔁 Fluxo completo
-git push
-   ↓
-GitHub Actions executa pytest
-   ↓
-Se PASSAR ✅
-   ↓
-Render faz deploy automático
-   ↓
-API atualizada em produção 🚀
-📁 Estrutura do projeto
+📂 Estrutura do projeto
 api-flask/
 │
-├── main.py
-├── test_main.py
-├── requirements.txt
 ├── .github/
 │   └── workflows/
-│       └── pipeline.yml
+│       └── pipeline.yaml
+│
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
+│
+├── terraform/
+│   └── main.tf
+│
+├── Dockerfile
+├── main.py
+├── requirements.txt
+├── .gitignore
 └── README.md
-🚀 Tecnologias utilizadas
-Python 3
-Flask
-Pytest
-Git & GitHub
-GitHub Actions (CI)
-Render (CD)
-Gunicorn
-🌐 Deploy
 
-API em produção:
+🏗️ Arquitetura
+                GitHub
+                   │
+                   ▼
+         GitHub Actions (CI/CD)
+                   │
+          Build + Validation
+                   │
+                   ▼
+             Docker Image
+                   │
+         ┌─────────┴─────────┐
+         │                   │
+         ▼                   ▼
+   Kubernetes            Render
+      Cluster             Deploy
 
-👉 https://api-flask-fnq8.onrender.com
+🚀 Como executar
+1. Clonar o projeto
+git clone https://github.com/joaocarvals/api-flask
 
-📈 O que este projeto demonstra
+cd api-flask
+2. Criar ambiente virtual
+Windows
+python -m venv venv
 
-✔ CI/CD funcionando de ponta a ponta
-✔ Testes automatizados com pytest
-✔ Integração GitHub Actions
-✔ Deploy contínuo na Render
-✔ Projeto pronto para portfólio DevOps
+venv\Scripts\activate
+Linux/macOS
+python3 -m venv venv
 
-🔮 Próximos passos
-Coverage com pytest-cov
-Lint com ruff ou flake8
-Dockerização da API
-Deploy em AWS
-Monitoramento e logs
+source venv/bin/activate
+3. Instalar dependências
+pip install -r requirements.txt
+4. Executar a aplicação
+python main.py
+
+A aplicação ficará disponível em:
+
+http://localhost:5000
+🐳 Docker
+Build
+docker build -t flask-api .
+Executar
+docker run -p 5000:5000 flask-api
+☸️ Kubernetes
+
+Aplicar Deployment
+
+kubectl apply -f k8s/deployment.yaml
+
+Aplicar Service
+
+kubectl apply -f k8s/service.yaml
+
+Verificar pods
+
+kubectl get pods
+
+Verificar serviços
+
+kubectl get svc
+🌍 Terraform
+
+A infraestrutura está sendo criada utilizando o provider Docker do Terraform.
+
+Atualmente o projeto possui:
+
+Estrutura inicial criada
+Provisionamento de imagem Docker
+Ajustes finais em andamento
+
+Após finalizado será possível executar:
+
+terraform init
+
+terraform plan
+
+terraform apply
+🔄 Pipeline CI/CD
+
+O projeto utiliza GitHub Actions para automatizar o fluxo de integração contínua.
+
+Fluxo atual:
+
+Checkout do código
+Instalação das dependências
+Build da aplicação
+Build da imagem Docker
+Deploy automatizado
+🎯 Objetivos de aprendizado
+✅ Desenvolvimento de APIs REST
+✅ Dockerização de aplicações
+✅ Kubernetes
+✅ GitHub Actions
+🔄 Terraform
+🔄 Deploy automatizado
+🔄 Cloud Computing
+🚧 Roadmap
+
+Criar API Flask
+
+Criar Dockerfile
+
+Configurar GitHub Actions
+
+Criar Deployment Kubernetes
+
+Criar Service Kubernetes
+
+Finalizar Terraform
+
+Adicionar testes automatizados
+
+Monitoramento com Prometheus
+
+Dashboards com Grafana
+
+Deploy na AWS (EKS/ECS)
+
+Pipeline completo de CI/CD
+
 👨‍💻 Autor
 
 João Carvalho
-Foco em DevOps, automação, CI/CD e backend com Python**
+
+Graduando em Ciência da Computação e entusiasta de DevOps, Cloud Computing e Automação.
+
+LinkedIn:
+https://www.linkedin.com/in/joãocarvalhoos
+
+GitHub:
+https://github.com/joaocarvals
