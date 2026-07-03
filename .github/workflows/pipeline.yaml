@@ -1,59 +1,81 @@
 name: CI/CD Pipeline
 
+#Define quando o pipeline será executada
 on:
+
+#Executa sempre que houver um push na branch main
   push:
     branches:
       - main
 
 jobs:
+#Etapa 1: Testes
+
   ci_test:
     runs-on: ubuntu-latest
 
     steps:
+    #Baixa codigo do repositório para o runner
       - name: Checkout code
         uses: actions/checkout@v4
 
+      #Configura a versão do Python utilizada na pipeline
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      #Atualiza o pip e instala as dependências do projeto
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      #Executa os testes automatizados utilizando Pytest
       - name: Run tests
         run: |
           pytest -v
 
+  #Etapa 2: Build e Push da imagem Docker
+  #Só sera executado se os testes estiverem ok
+
   docker_build_push:
+    #Define a dependencia da etapa anterior
     needs: ci_test
     runs-on: ubuntu-latest
 
     steps:
+      #Baixa novamente o codigo para este job
       - name: Checkout code
         uses: actions/checkout@v4
 
+      #Realiza autenticação no Docker Hub utilizando Secrets
       - name: Login no Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      #Constroi a imagem Docker na aplicação
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/minha-api:latest .
 
+      #Envia a imagem para o Docker Hub
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/minha-api:latest
+  
+  #Etapa 3: Deply Continuo (CD)
+  #Só sera executado se a etapa de build e push estiver ok
 
   deploy:
+    #Aguarda o termino de build e do push
     needs: docker_build_push
     runs-on: ubuntu-latest
 
     steps:
+      #Dispara o Deploy na Render para atualizar a app
       - name: Deploy na Render
         run: |
           curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
