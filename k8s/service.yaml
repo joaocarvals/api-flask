@@ -1,17 +1,34 @@
+# Versão da API utilizada para criar o Service
 apiVersion: v1
+
+# Tipo de recurso que será criado
 kind: Service
 
+# Metadados do Service
 metadata:
+  # Nome do Service
   name: flask-service
 
+# Especificações do Service
 spec:
+  # Tipo do Service
+  # NodePort expõe a aplicação em uma porta do nó do Kubernetes
   type: NodePort
 
+  # Seleciona os Pods que possuem a label "app: flask-api"
   selector:
     app: flask-api
 
+  # Configuração das portas do Service
   ports:
+    # Protocolo utilizado para comunicação
     - protocol: TCP
+
+      # Porta interna do Service
       port: 5000
+
+      # Porta do container para onde o tráfego será encaminhado
       targetPort: 5000
+
+      # Porta aberta no nó do Kubernetes para acesso externo
       nodePort: 30080
