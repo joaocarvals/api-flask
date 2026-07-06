@@ -31,7 +31,7 @@ resource "docker_container" "flask_api_container" {
     internal = 5000
 
     # Porta exposta na máquina host
-    external = 5000
+   external = 5000
   }
 
   # Define a política de reinicialização do container

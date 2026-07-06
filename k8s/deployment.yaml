@@ -1,26 +1,44 @@
+# Versão da API do Kubernetes utilizada para criar o recurso
 apiVersion: apps/v1
+
+# Tipo de recurso que será criado
 kind: Deployment
 
+# Metadados do Deployment
 metadata:
+  # Nome do Deployment
   name: flask-api
 
+# Especificações do Deployment
 spec:
+  # Quantidade de réplicas (Pods) que o Kubernetes manterá em execução
   replicas: 2
 
+  # Seletor que identifica quais Pods pertencem a este Deployment
   selector:
     matchLabels:
       app: flask-api
 
+  # Modelo (template) utilizado para criar os Pods
   template:
     metadata:
+      # Labels que serão aplicadas aos Pods criados
       labels:
         app: flask-api
 
     spec:
+      # Lista de containers que existirão dentro do Pod
       containers:
+        # Nome do container
         - name: flask-api
+
+          # Imagem Docker utilizada para criar o container
           image: joaocarvals/minha-api:latest
+
+          # Sempre verifica se existe uma versão mais recente da imagem
           imagePullPolicy: Always
 
+          # Portas expostas pelo container
           ports:
+            # Porta em que a aplicação Flask está escutando
             - containerPort: 5000
