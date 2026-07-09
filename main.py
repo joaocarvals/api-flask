@@ -21,11 +21,13 @@ livros = [
 ]
 
 #Consultar todos os livros
+
 @app.route('/livros', methods=['GET'])
 def obter_livros():
     return jsonify(livros)
 
 #Consultar um livro pelo ID
+
 @app.route('/livros/<int:id>', methods=['GET'])
 def obter_livro_por_id(id):
     for livro in livros:
@@ -33,6 +35,7 @@ def obter_livro_por_id(id):
             return jsonify(livro)
         
 #Editar um livro pelo ID
+
 @app.route('/livros/<int:id>', methods=['PUT'])
 def editar_livro(id):
     livro_alterado = request.get_json()
@@ -42,6 +45,7 @@ def editar_livro(id):
             return jsonify(livros[indice])
 
 #Cria um novo livro
+
 @app.route('/livros', methods=['POST'])
 def criar_livro():
     novo_livro = request.get_json()
@@ -49,6 +53,7 @@ def criar_livro():
     return jsonify(novo_livro), 201
 
 #Excluir um livro pelo ID
+
 @app.route('/livros/<int:id>', methods=['DELETE'])
 def excluir_livro(id):
     for indice, livro in enumerate(livros):
@@ -57,6 +62,7 @@ def excluir_livro(id):
             return jsonify(livros)
 
 #Para rodar a aplicação
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 
