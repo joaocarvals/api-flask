@@ -3,6 +3,7 @@ from main import app
 client = app.test_client()
 
 # Teste para consultar todos os livros
+
 def test_obter_livros():
     response = client.get('/livros')
 
@@ -11,6 +12,7 @@ def test_obter_livros():
 
 
 # Teste para consultar um livro pelo ID
+
 def test_obter_livro_por_id():
     response = client.get('/livros/1')
 
@@ -19,6 +21,7 @@ def test_obter_livro_por_id():
 
 
 # Teste para criar um livro
+
 def test_criar_livro():
     novo_livro = {
         'id': 4,
@@ -37,6 +40,7 @@ def test_criar_livro():
 
 
 # Teste para editar um livro pelo ID
+
 def test_editar_livro():
     dados = {
         'titulo': 'Livro Editado',
