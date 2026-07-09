@@ -1,3 +1,5 @@
+#Diretortios que devem ser ignorados
+
 .terraform/
 *.tfstate
 *.tfstate.*
