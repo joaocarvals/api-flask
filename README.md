@@ -1,28 +1,26 @@
 # 🚀 Flask DevOps Project
 
 ## 📖 Sobre o projeto
-
 Este projeto foi desenvolvido para praticar e demonstrar conceitos de **DevOps** utilizando uma aplicação **Flask** simples.
-
-O objetivo é construir um fluxo moderno de desenvolvimento, passando pela criação da aplicação, containerização, infraestrutura como código, orquestração e automação de deploy.
+O objetivo é construir um fluxo moderno de desenvolvimento, passando pela criação da aplicação, containerização, infraestrutura como código, orquestração, automação de deploy e monitoramento.
 
 ---
 
 ## 🛠️ Tecnologias
-
 - **Python**
 - **Flask**
 - **Docker**
 - **Kubernetes**
 - **Terraform**
 - **GitHub Actions**
+- **Prometheus**
+- **Grafana**
 - **Git**
 - **Render**
 
 ---
 
 ## 📂 Estrutura do projeto
-
 ```
 api-flask/
 │
@@ -47,7 +45,6 @@ api-flask/
 ---
 
 ## 🏗️ Arquitetura
-
 ```
                 GitHub
                    │
@@ -64,6 +61,10 @@ api-flask/
          ▼                   ▼
    Kubernetes            Render
       Cluster             Deploy
+         │
+         ▼
+   Prometheus + Grafana
+      (Monitoramento)
 ```
 
 ---
@@ -71,14 +72,12 @@ api-flask/
 ## 🚀 Como executar
 
 ### 1. Clonar o projeto
-
 ```bash
 git clone https://github.com/joaocarvals/api-flask
 cd api-flask
 ```
 
 ### 2. Criar ambiente virtual
-
 **Windows**
 ```bash
 python -m venv venv
@@ -92,19 +91,16 @@ source venv/bin/activate
 ```
 
 ### 3. Instalar dependências
-
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Executar a aplicação
-
 ```bash
 python main.py
 ```
 
 A aplicação ficará disponível em:
-
 ```
 http://localhost:5000
 ```
@@ -150,11 +146,9 @@ kubectl get svc
 ---
 
 ## 🌍 Terraform
-
 A infraestrutura é provisionada utilizando o **provider Docker** do Terraform, responsável por gerenciar a imagem e o container da aplicação de forma automatizada.
 
 Para executar:
-
 ```bash
 cd terraform
 terraform init
@@ -163,7 +157,6 @@ terraform apply
 ```
 
 Para destruir os recursos provisionados:
-
 ```bash
 terraform destroy
 ```
@@ -171,11 +164,9 @@ terraform destroy
 ---
 
 ## 🔄 Pipeline CI/CD
-
 O projeto utiliza **GitHub Actions** para automatizar o fluxo de integração contínua.
 
 Fluxo atual:
-
 1. Checkout do código
 2. Instalação das dependências
 3. Build da aplicação
@@ -184,20 +175,28 @@ Fluxo atual:
 
 ---
 
-## 🎯 Objetivos de aprendizado
+## 📊 Monitoramento
 
+O projeto conta com uma stack de observabilidade utilizando **Prometheus** e **Grafana**:
+
+- **Prometheus** coleta as métricas expostas pela aplicação e pelos recursos do cluster.
+- **Grafana** consome os dados do Prometheus e exibe dashboards para acompanhamento em tempo real de métricas como uso de CPU, memória e requisições da aplicação.
+
+---
+
+## 🎯 Objetivos de aprendizado
 - ✅ Desenvolvimento de APIs REST
 - ✅ Dockerização de aplicações
 - ✅ Kubernetes
 - ✅ GitHub Actions
 - ✅ Terraform (infraestrutura como código)
 - ✅ Deploy automatizado
-- 🔄 Cloud Computing
+- ✅ Monitoramento com Prometheus
+- ✅ Dashboards com Grafana
 
 ---
 
 ## 🚧 Roadmap
-
 - [x] Criar API Flask
 - [x] Criar Dockerfile
 - [x] Configurar GitHub Actions
@@ -207,16 +206,13 @@ Fluxo atual:
 - [x] Deploy automatizado (Render)
 - [x] Pipeline completo de CI/CD
 - [x] Adicionar testes automatizados
-- [ ] Monitoramento com Prometheus
-- [ ] Dashboards com Grafana
-- [ ] Deploy na AWS (EKS/ECS)
+- [x] Monitoramento com Prometheus
+- [x] Dashboards com Grafana
 
 ---
 
 ## 👨‍💻 Autor
-
 **João Carvalho**
-
 Graduando em Ciência da Computação e entusiasta de DevOps, Cloud Computing e Automação.
 
 - **LinkedIn:** [linkedin.com/in/joaocarvalhoos](https://www.linkedin.com/in/joãocarvalhoos)
