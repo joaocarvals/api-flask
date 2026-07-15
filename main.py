@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, request
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+
+metrics = PrometheusMetrics(app)
 
 livros = [
     {
@@ -33,7 +36,7 @@ def obter_livro_por_id(id):
     for livro in livros:
         if livro.get('id') == id:
             return jsonify(livro)
-        
+    return jsonify({'message': 'Livro não encontrado'}), 404
 #Editar um livro pelo ID
 
 @app.route('/livros/<int:id>', methods=['PUT'])
