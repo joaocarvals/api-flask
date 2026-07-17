@@ -1,43 +1,77 @@
+# Versão da sintaxe do Docker Compose utilizada
 version: "3.9"
 
+# Lista de serviços (containers) que serão criados
 services:
+
+  # Serviço da aplicação Flask
   app:
+
+    # Nome que o container terá ao ser criado
     container_name: flask-api
 
+    # Configuração para construir a imagem da aplicação
     build:
+
+      # Diretório onde está o Dockerfile e os arquivos da aplicação
       context: .
+
+      # Arquivo utilizado para construir a imagem
       dockerfile: Dockerfile
 
+    # Mapeamento de portas
+    # Formato: HOST:CONTAINER
     ports:
       - "5000:5000"
 
+    # Reinicia automaticamente caso o container pare
+    # Exceto se ele for parado manualmente
     restart: unless-stopped
 
+  # Serviço do Prometheus (coleta de métricas)
   prometheus:
+
+    # Imagem oficial do Prometheus no Docker Hub
     image: prom/prometheus
 
+    # Nome do container
     container_name: prometheus
 
+    # Porta para acessar a interface web do Prometheus
     ports:
       - "9090:9090"
 
+    # Volume para utilizar o arquivo de configuração local
     volumes:
+
+      # Arquivo local               Arquivo dentro do container
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
 
+    # O Prometheus depende da aplicação Flask
+    # O Docker iniciará a aplicação antes do Prometheus
     depends_on:
       - app
 
+    # Reinício automático
     restart: unless-stopped
 
+  # Serviço do Grafana (visualização das métricas)
   grafana:
+
+    # Imagem oficial do Grafana
     image: grafana/grafana
 
+    # Nome do container
     container_name: grafana
 
+    # Porta para acessar o painel do Grafana
     ports:
       - "3000:3000"
 
+    # O Grafana depende do Prometheus
+    # Primeiro sobe o Prometheus e depois o Grafana
     depends_on:
       - prometheus
 
+    # Reinício automático
     restart: unless-stopped
