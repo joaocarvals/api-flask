@@ -1,9 +1,21 @@
+# Configurações globais do Prometheus
 global:
+  # Intervalo em que o Prometheus fará a coleta das métricas
+  # Neste caso, a cada 5 segundos
   scrape_interval: 5s
 
+# Lista de aplicações (targets) que o Prometheus irá monitorar
 scrape_configs:
+
+  # Nome da aplicação monitorada
+  # Será utilizado para identificar as métricas no Prometheus
   - job_name: "flask-api"
 
+    # Lista de alvos (targets) que serão coletados
     static_configs:
+
+      # Endereço da aplicação dentro da rede criada pelo Docker Compose
+      # "app" é o nome do serviço definido no docker-compose.yml
+      # Porta 5000 é onde a API Flask está sendo executada
       - targets:
           - app:5000
